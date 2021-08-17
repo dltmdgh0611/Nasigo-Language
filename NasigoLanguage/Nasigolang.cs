@@ -1,4 +1,5 @@
 ﻿using System;
+using Nasigo_Parser;
 
 namespace NasigoLanguage
 {
@@ -6,7 +7,7 @@ namespace NasigoLanguage
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            NasigoParser.Instance.DoParse("");
         }
     }
 }
