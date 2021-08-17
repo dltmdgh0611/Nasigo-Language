@@ -7,7 +7,7 @@ namespace NasigoLanguage
     {
         static void Main(string[] args)
         {
-            NasigoParser.Instance.DoParse("");
+            NasigoParser.Instance.DoParse(@"D:\Nasigo-lang\NasigoLanguage\NasigoLanguage\code.ns");
         }
     }
 }
