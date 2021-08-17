@@ -2,7 +2,7 @@
 
 namespace NasigoLanguage
 {
-    class Program
+    class Nasigolang
     {
         static void Main(string[] args)
         {
