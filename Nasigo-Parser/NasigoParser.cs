@@ -11,7 +11,7 @@ namespace Nasigo_Parser
 
             try
             {
-                if (!ParsingLine(ref result)) throw new Exception("Parsing Error... \n");
+                if (!ParsingLine(ref result, path)) throw new Exception("Parsing Error... \n");
             }
             catch (Exception ex)
             {
@@ -22,9 +22,19 @@ namespace Nasigo_Parser
             return result;
         }
         
-        private bool ParsingLine(ref ParsingData data)
+        private bool ParsingLine(ref ParsingData data, string path)
         {
-            
+            using (StreamReader sr = new StreamReader(path))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    data.Add(line);
+                }
+#if DEBUG
+                data.Print();
+#endif
+            }
             return true;
         }
     }
