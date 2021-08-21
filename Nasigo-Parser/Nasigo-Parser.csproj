@@ -9,4 +9,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Nasigo-Design\Nasigo-Design.csproj" />
+  </ItemGroup>
+
 </Project>

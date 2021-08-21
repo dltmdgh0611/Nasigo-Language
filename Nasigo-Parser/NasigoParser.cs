@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nasigo_Design;
+using System;
 using System.IO;
 
 namespace Nasigo_Parser
