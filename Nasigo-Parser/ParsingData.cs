@@ -37,9 +37,17 @@ namespace Nasigo_Parser
         /// </summary>
         public void Print()
         {
-            foreach(string i in ParsingData_List)
+            Console.WriteLine();
+            int count = 1;
+            int listcount = ParsingData_List.Count.ToString().Length;
+            string space = " ";
+            foreach (string i in ParsingData_List)
             {
-                Console.WriteLine(i);
+                int curcount = listcount - count.ToString().Length;
+                for (int j = 0; j < curcount; j++) space += " ";
+                Console.WriteLine(space + count + "   " + i);
+                count++;
+                space = " ";
             }
         }
     }
