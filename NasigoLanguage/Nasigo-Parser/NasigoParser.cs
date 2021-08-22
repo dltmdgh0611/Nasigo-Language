@@ -1,11 +1,12 @@
-﻿using Nasigo_Design;
-using System;
+﻿using System;
 using System.IO;
 
-namespace Nasigo_Parser
+namespace NasigoLanguage
 {
     public class NasigoParser : NPSingleton<NasigoParser>
     {
+        
+
         public ParsingData DoParse(string path)
         {
             ParsingData result = new ParsingData();

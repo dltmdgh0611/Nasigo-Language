@@ -1,0 +1,7 @@
+*.cache
+*.json
+NasigoLanguage/bin/Debug/netcoreapp3.1/NasigoLanguage.dll
+NasigoLanguage/bin/Debug/netcoreapp3.1/NasigoLanguage.pdb
+.vs/
+NasigoLanguage/bin/
+NasigoLanguage/obj/
