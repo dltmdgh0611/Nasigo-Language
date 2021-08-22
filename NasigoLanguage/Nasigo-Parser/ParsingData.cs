@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Nasigo_Parser
+namespace NasigoLanguage
 {
     /// <summary>
     /// Parsing한 String을 저장하고, Parsing Status에 관한 정보들을 포함한다.

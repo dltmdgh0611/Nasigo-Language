@@ -9,8 +9,4 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Nasigo-Parser\Nasigo-Parser.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,5 +1,5 @@
 ﻿using System;
-using Nasigo_Parser;
+using System.Collections.Generic;
 
 namespace NasigoLanguage
 {
