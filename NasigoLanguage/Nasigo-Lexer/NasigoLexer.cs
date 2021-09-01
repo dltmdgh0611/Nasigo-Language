@@ -5,7 +5,7 @@ namespace NasigoLanguage
 {
     public enum Kind
     {
-        space,
+        Unknown,
         letter,
         digit,
         equal,
@@ -17,6 +17,10 @@ namespace NasigoLanguage
         rbraket,    // ]
         lbrack,    // <
         rbrack,    // >
+        noteq, // !=
+        lesseq, // <=
+        gtreq, // >=
+        change, // <=>
         dot,
         comma,
         semi,      // ;
@@ -72,7 +76,11 @@ namespace NasigoLanguage
             initKindTable();
             for (int i = 0; i < 100; i++)
             {
-                GetToken();
+                Token t = GetToken();
+                Console.Write(t.value + " ");
+                Console.Write(t.word + " ");
+                Console.WriteLine(t.kind.ToString());
+                
             }
             ;
 
@@ -83,6 +91,7 @@ namespace NasigoLanguage
             Token token = new Token();
             Kind k = new Kind();
             char ch = ' ';
+            int num = 0;
             string block = "";
             while (true)
             {
@@ -102,6 +111,43 @@ namespace NasigoLanguage
                     break;
                     
                 case Kind.digit:
+                    do
+                    {
+                        num = 10 * num + (ch - '0');
+                        ch = nextChar();
+                    } while (KindTable[ch] == Kind.digit);
+                    token.kind = Kind.digit;
+                    token.value = num;
+                    break;
+
+                case Kind.lbrack:
+                    if ((ch = nextChar()) == '=')
+                    {
+                        token.kind = Kind.lesseq;
+                        if ((ch = nextChar()) == '>')
+                        {
+                            ch = nextChar();
+                            token.kind = Kind.change;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        ch = nextChar();
+                        token.kind = Kind.lbrack;
+                    }
+                    break;
+                case Kind.rbrack:
+                    if ((ch = nextChar()) == '=')
+                    {
+                        ch = nextChar();
+                        token.kind = Kind.gtreq;
+                    }
+                    else token.kind = Kind.rbrack;
+                    break;
+                case Kind.semi:
+                    ch = nextChar();
+                    token.kind = Kind.semi;
                     break;
 
                 default:
