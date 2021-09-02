@@ -70,6 +70,16 @@ namespace NasigoLanguage
             return result;
         }
 
+        void prevChar()
+        {
+            if (Cursor == 0)
+            {
+                Line--;
+                Cursor = list[Line].Length-1;
+            }
+            else Cursor--;
+        }
+
         public void DoLexicalAnalysis(ParsingData parsingData)
         {
             list = parsingData.ParsingData_List;
@@ -77,9 +87,20 @@ namespace NasigoLanguage
             for (int i = 0; i < 100; i++)
             {
                 Token t = GetToken();
-                Console.Write(t.value + " ");
-                Console.Write(t.word + " ");
-                Console.WriteLine(t.kind.ToString());
+                switch (t.kind)
+                {
+                    case Kind.Unknown:
+                        break;
+                    case Kind.letter:
+                        Console.WriteLine(t.word + " <letter>");
+                        break;
+                    case Kind.digit:
+                        Console.WriteLine(t.value + " <digit>");
+                        break;
+                    default:
+                        Console.WriteLine(t.ch + " <"+t.kind+">");
+                        break;
+                }
                 
             }
             ;
@@ -108,6 +129,7 @@ namespace NasigoLanguage
                     } while (KindTable[ch] == Kind.digit || KindTable[ch] == Kind.letter);
                     token.kind = Kind.letter;
                     token.word = block;
+                    prevChar();
                     break;
                     
                 case Kind.digit:
@@ -118,6 +140,7 @@ namespace NasigoLanguage
                     } while (KindTable[ch] == Kind.digit);
                     token.kind = Kind.digit;
                     token.value = num;
+                    prevChar();
                     break;
 
                 case Kind.lbrack:
@@ -133,7 +156,7 @@ namespace NasigoLanguage
                     }
                     else
                     {
-                        ch = nextChar();
+                        prevChar();
                         token.kind = Kind.lbrack;
                     }
                     break;
@@ -143,13 +166,44 @@ namespace NasigoLanguage
                         ch = nextChar();
                         token.kind = Kind.gtreq;
                     }
-                    else token.kind = Kind.rbrack;
+                    else
+                    {
+                        prevChar();
+                        token.kind = Kind.rbrack;
+                    }
                     break;
                 case Kind.semi:
-                    ch = nextChar();
+                    token.ch = ch;
                     token.kind = Kind.semi;
                     break;
-
+                case Kind.dot:
+                    token.ch = ch;
+                    token.kind = Kind.dot;
+                    break;
+                case Kind.comma:
+                    token.ch = ch;
+                    token.kind = Kind.comma;
+                    break;
+                case Kind.lparen:
+                    token.ch = ch;
+                    token.kind = Kind.lparen;
+                    break;
+                case Kind.rparen:
+                    token.ch = ch;
+                    token.kind = Kind.rparen;
+                    break;
+                case Kind.lbrace:
+                    token.ch = ch;
+                    token.kind = Kind.lbrace;
+                    break;
+                case Kind.rbrace:
+                    token.ch = ch;
+                    token.kind = Kind.rbrace;
+                    break;
+                case Kind.equal:
+                    token.ch = ch;
+                    token.kind = Kind.equal;
+                    break;
                 default:
                     break;
             }

@@ -10,6 +10,8 @@ namespace NasigoLanguage
 
         public string word { get; set; }
         public int value { get; set; }
+
+        public char ch { get; set; }
     }
 
     public class Key
