@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NasigoLanguage
 {
     public enum Kind
     {
         Unknown,
+        Void,Int,Double,String,Char,
+        Return,If,For,Else,Elif,
+        Plus,Minus,Mul,Div,
         letter,
         digit,
         equal,
@@ -26,8 +30,10 @@ namespace NasigoLanguage
         semi,      // ;
         error
     }
+   
     public class NasigoLexer : NPSingleton<NasigoLexer>
     {
+        static Dictionary<string, Kind> Reversed = new Dictionary<string, Kind>();
         
 
         static Kind[] KindTable = new Kind[128]; 
@@ -54,6 +60,18 @@ namespace NasigoLanguage
             KindTable['.'] = Kind.dot;
             KindTable[','] = Kind.comma;
             KindTable[';'] = Kind.semi;
+
+            Reversed.Add("void", Kind.Void);
+            Reversed.Add("return", Kind.Return);
+            Reversed.Add("int", Kind.Int);
+            Reversed.Add("string", Kind.String);
+            Reversed.Add("char", Kind.Char);
+            Reversed.Add("if", Kind.If);
+            Reversed.Add("else", Kind.Else);
+            Reversed.Add("elif", Kind.Elif);
+            Reversed.Add("for", Kind.For);
+            Reversed.Add("double", Kind.Double);
+
         }
 
         char nextChar()
@@ -129,6 +147,13 @@ namespace NasigoLanguage
                     } while (KindTable[ch] == Kind.digit || KindTable[ch] == Kind.letter);
                     token.kind = Kind.letter;
                     token.word = block;
+                    for (int i = 0; i < Reversed.Count; i++)
+                    {
+                        if (block == Reversed.ElementAt(i).Key)
+                        {
+                            token.kind = Reversed.ElementAt(i).Value;
+                        }
+                    }
                     prevChar();
                     break;
                     
