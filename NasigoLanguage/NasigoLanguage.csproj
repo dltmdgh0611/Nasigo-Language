@@ -9,10 +9,4 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Nasigo-LL\**" />
-    <EmbeddedResource Remove="Nasigo-LL\**" />
-    <None Remove="Nasigo-LL\**" />
-  </ItemGroup>
-
 </Project>
