@@ -7,7 +7,7 @@ namespace NasigoLanguage
     /// <summary>
     /// Parsing한 String을 저장하고, Parsing Status에 관한 정보들을 포함한다.
     /// </summary>
-    public class ParsingData
+    public class ReadData
     {
         private string _parsingdata_Str = null;
         private List<string> _parsingdata_List = new List<string>();

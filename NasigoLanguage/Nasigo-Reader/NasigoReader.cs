@@ -3,17 +3,17 @@ using System.IO;
 
 namespace NasigoLanguage
 {
-    public class NasigoParser : NPSingleton<NasigoParser>
+    public class NasigoReader : NPSingleton<NasigoReader>
     {
         
 
-        public ParsingData DoParse(string path)
+        public ReadData DoRead(string path)
         {
-            ParsingData result = new ParsingData();
+            ReadData result = new ReadData();
 
             try
             {
-                if (!ParsingLine(ref result, path)) throw new Exception("Parsing Error... \n");
+                if (!NReadLine(ref result, path)) throw new Exception("Reading Error... \n");
             }
             catch (Exception ex)
             {
@@ -24,7 +24,7 @@ namespace NasigoLanguage
             return result;
         }
         
-        private bool ParsingLine(ref ParsingData data, string path)
+        private bool NReadLine(ref ReadData data, string path)
         {
             using (StreamReader sr = new StreamReader(path))
             {

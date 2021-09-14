@@ -7,8 +7,8 @@ namespace NasigoLanguage
     {
         static void Main(string[] args)
         {
-            ParsingData parsingData = new ParsingData();
-            parsingData = NasigoParser.Instance.DoParse(@"D:\Nasigo-lang\NasigoLanguage\NasigoLanguage\code.ns");
+            ReadData parsingData = new ReadData();
+            parsingData = NasigoReader.Instance.DoRead(@"D:\Nasigo-lang\NasigoLanguage\NasigoLanguage\code.ns");
 
             NasigoLexer.Instance.DoLexicalAnalysis(parsingData);
 

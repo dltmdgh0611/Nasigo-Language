@@ -98,7 +98,7 @@ namespace NasigoLanguage
             else Cursor--;
         }
 
-        public void DoLexicalAnalysis(ParsingData parsingData)
+        public void DoLexicalAnalysis(ReadData parsingData)
         {
             list = parsingData.ParsingData_List;
             initKindTable();
