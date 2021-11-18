@@ -125,7 +125,7 @@ namespace NasigoLanguage
 
         }
 
-        Token GetToken()
+        public Token GetToken()
         {
             Token token = new Token();
             Kind k = new Kind();
